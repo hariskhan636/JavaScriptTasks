@@ -1,0 +1,226 @@
+.btnContainer {
+  border: 1px solid black;
+  width: 100%;
+}
+
+#input-group select{
+  width: calc(100% - 20px);
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+button {
+  background-color: greenyellow;
+  color: black;
+  padding: 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 3px;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+#product-show {
+  padding: 10px;
+}
+
+#vendor-show {
+  padding: 10px;
+}
+
+#cat-show {
+  padding: 10px;
+}
+
+#input-group label {
+  width: 100%;
+  display: block;
+  margin-bottom: 2px;
+}
+
+#input-group input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+#input-group {
+  margin-bottom: 15px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table td,
+table th {
+  border: solid 1px black;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.modal-back,
+.modal-back2,
+.modal-back3,
+.modal-back4,
+.modal-back5,
+.modal-back6,
+.modal-back7,
+.modal-back8,
+.vendor-back,
+.vendor-back1,
+.cat-back,
+.cat-back1,
+#activeVendor-show,
+#activeCat-show {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #cccccc2e;
+}
+
+.product-add {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+}
+
+.product-add2 {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+  align-items: center;
+}
+
+.product-add3 {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+  align-items: center;
+}
+
+.vendor-add {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+}
+
+.cat-add {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+}
+
+.product-edit {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+}
+
+.prod-delete {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+}
+
+.ven-delete {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+}
+
+.cat-delete {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+}
+
+.prod-view {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+}
+
+button.edit {
+  padding: 5px 10px;
+  background-color: lightgreen;
+  border-radius: 3px;
+}

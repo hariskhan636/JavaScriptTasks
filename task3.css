@@ -1,0 +1,63 @@
+table {
+    border-collapse: collapse;
+}
+  
+  table td,
+  table th {
+    border: solid 1px black;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+button {
+    background-color: black;
+    color: white;
+    padding: 15px;
+    margin: 10px;
+    border: none;
+    border-radius: 3px;
+    justify-content: center;
+}
+
+.modal-back{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #cccccc2e;
+}
+.person-add {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: white;
+}
+
+#input-group label {
+    width: 100%;
+    display: block;
+    margin-bottom: 2px;
+  }
+  
+  #input-group input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid black;
+  }
+  
+  #input-group {
+    margin-bottom: 15px;
+  }
+
+#person-show {
+    padding: 10px;
+}

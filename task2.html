@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="task2.css" />
+    <script type="text/javascript" src="task2.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  <button onclick="showBooks()">Show Books</button>
+  <button onclick="addBooks()">Add Books</button>
+  <button onclick="sortBooks()">Sort Books</button>
+
+    <div id="books-show">
+        <h2 style="margin-top: 20px">Library</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>LibraryID</th>
+            </tr>
+          </thead>
+          <tbody id="books-data">
+            <tr></tr>
+          </tbody>
+        </table>
+    </div>
+
+    <div class="modal-back">
+      <div class="book-add">
+        <h2>Add Book</h2>
+
+        <div id="input-group">
+          <label for="">Title</label>
+          <input type="text" id="title" placeholder="Book Title" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Author</label>
+          <input type="text" id="author" placeholder="Author" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Library ID</label>
+          <input type="text" id="libraryID" placeholder="Library ID" />
+        </div>
+
+        <button class="addSaveBtn" type="button" onclick="saveBook()">
+          Save
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-back1">
+      <div class="book-sort">
+        <h2>Sort Books</h2>
+        <div id="input-group">
+          <label for="">Enter A for Ascending/D for Descending</label>
+          <input type="text" id="order" placeholder="A/D"/>
+        </div>
+        <button class="addSaveBtn" type="button" onclick="sortedBooks()">
+          Sort
+        </button>
+      </div>
+    </div>
+
+</body>
+</html>

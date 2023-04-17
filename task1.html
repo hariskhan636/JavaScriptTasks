@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="task1.css" />
+    <script type="text/javascript" src="task1.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="btnContainer">
+      <h1>Actions</h1>
+
+      <button onclick="addProduct()">Add Product</button>
+      <button onclick="addVendor()">Add Vendor</button>
+      <button onclick="addCategory()">Add Category</button>
+      <button onclick="showProducts()">Show Products</button>
+      <button onclick="showVendors()">Show Vendors</button>
+      <button onclick="showCategory()">Show Category</button>
+      <button onclick="deleteProductByID()">Delete by ID</button>
+      <button onclick="deleteProductByName()">Delete by Name</button>
+      <button onclick="getCategoryProducts()">
+        View Products in a Category
+      </button>
+      <button onclick="getVendorProducts()">View Products by Vendor</button>
+      <button onclick="getCheapProducts()">Get Cheap Products</button>
+      <button onclick="getProductByID()">View Product by ID</button>
+    </div>
+
+    <div id="product-show" style="display: none;">
+      <h2 id="heading" style="margin-top: 20px">Products</h2>
+      <table>
+        <thead id="head">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Vendor ID</th>
+            <th>Category ID</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody id="product-data">
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="vendor-show" style="display: none;">
+      <h2 id="heading1" style="margin-top: 20px">Vendors</h2>
+      <table>
+        <thead id="head">
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact</th>
+            <th>Status</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="vendor-data">
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="cat-show" style="display: none;">
+      <h2 id="heading2" style="margin-top: 20px">Categories</h2>
+      <table>
+        <thead id="head">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="cat-data">
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal-back">
+      <div class="product-add">
+        <h2>Add Product</h2>
+
+        <div id="input-group">
+          <label for="">Name</label>
+          <input type="text" id="name" placeholder="Product Name" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Price</label>
+          <input type="text" id="price" placeholder="Price" />
+        </div>
+
+        <div id="input-group">
+          <label id="ven-label" for="">Vendor</label>
+          <select id="vendorId">
+            <option value="">Select a vendor</option>
+          </select>
+        </div>
+
+        <div id="input-group">
+          <label id="cat-label" for="">Category</label>
+          <select id="categoryId">
+            <option value="">Select a category</option>
+          </select>
+        </div>
+
+        <button class="addSaveBtn" type="button" onclick="saveProduct()">
+          Save
+        </button>
+
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('modal-back')[0].style.display = 'none'"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="vendor-back">
+      <div class="vendor-add">
+        <h2>Add Vendor</h2>
+
+        <div id="input-group">
+          <label for="">ID</label>
+          <input type="text" id="ven_id" placeholder="Vendor ID" />
+        </div>
+
+        <div id="input-group">
+          <label for="">First Name</label>
+          <input type="text" id="ven_fname" placeholder="First Name" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Last Name</label>
+          <input type="text" id="ven_lname" placeholder="Last Name" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Contact</label>
+          <input type="text" id="contact" placeholder="Contact" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Status</label>
+          <input type="text" id="status" placeholder="active/inactive" />
+        </div>
+
+        <button class="addSaveBtn" type="button" onclick="saveVendor()">
+          Save
+        </button>
+
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('vendor-back')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="cat-back">
+      <div class="cat-add">
+        <h2>Add Category</h2>
+
+        <div id="input-group">
+          <label for="">ID</label>
+          <input type="text" id="cat_id" placeholder="Category ID" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Name</label>
+          <input type="text" id="cat_name" placeholder="Name" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Status</label>
+          <input type="text" id="cat_status" placeholder="active/inactive" />
+        </div>
+
+        <button class="addSaveBtn" type="button" onclick="saveCategory()">
+          Save
+        </button>
+
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('cat-back')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-back2">
+      <div class="product-edit">
+        <h2>Edit Product</h2>
+        <input type="hidden" id="prodIndex"/>
+
+        <div id="input-group">
+          <label for="">Name</label>
+          <input type="text" id="name1" placeholder="Product Name" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Price</label>
+          <input type="text" id="price1" placeholder="Price" />
+        </div>
+
+        <div id="input-group">
+          <label for="">Vendor ID</label>
+          <select id="vendorId1"></select>
+        </div>
+
+        <div id="input-group">
+          <label for="">Category ID</label>
+          <select id="categoryId1"></select>
+        </div>
+
+        <button class="addEditBtn" type="button" onclick="saveProduct()">
+          Save
+        </button>
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('modal-back2')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-back3">
+      <div class="prod-delete">
+        <h2>Enter Product Id to Delete</h2>
+        <div id="input-group">
+          <label for="">ID</label>
+          <input type="text" id="prod_id" placeholder="Product ID" />
+        </div>
+        <button class="addDelBtn" type="button" onclick="delProduct()">
+          Delete
+        </button>
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('modal-back3')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="vendor-back1">
+      <div class="ven-delete">
+        <h2>Enter Vendor Id to Delete</h2>
+        <div id="input-group">
+          <label for="">ID</label>
+          <input type="text" id="ven_id1" placeholder="Vendor ID" />
+        </div>
+        <button class="addDelBtn" type="button" onclick="delVendor()">
+          Delete
+        </button>
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('vendor-back1')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="cat-back1">
+      <div class="cat-delete">
+        <h2>Enter Category Id to Delete</h2>
+        <div id="input-group">
+          <label for="">ID</label>
+          <input type="text" id="cat_id1" placeholder="Category ID" />
+        </div>
+        <button class="addDelBtn" type="button" onclick="delCategory()">
+          Delete
+        </button>
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('cat-back1')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-back4">
+      <div class="prod-delete">
+        <h2>Enter Product Name to Delete</h2>
+        <div id="input-group">
+          <label for="">Name</label>
+          <input type="text" id="prod_name" placeholder="Product Name" />
+        </div>
+        <button class="addDelBtn" type="button" onclick="delProduct()">
+          Delete
+        </button>
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('modal-back4')[0].style.display = 'none'; cancel()"
+          ;
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-back5">
+      <div class="prod-view">
+        <h2>Enter Category to view products</h2>
+        <div id="input-group">
+          <label for="">Category Name</label>
+          <input type="text" id="cat_id" placeholder="Category Name" />
+        </div>
+        <button class="addViewBtn" type="button" onclick="viewProduct()">
+          View
+        </button>
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('modal-back5')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-back6">
+      <div class="prod-view">
+        <h2>Enter Vendor Name to view products</h2>
+        <div id="input-group">
+          <label for="">Vendor First Name</label>
+          <input type="text" id="ven_fn" placeholder="Vendor First Name" />
+        </div>
+        <div id="input-group">
+          <label for="">Vendor Last Name</label>
+          <input type="text" id="ven_ln" placeholder="Vendor Last Name" />
+        </div>
+        <button class="addViewBtn" type="button" onclick="viewProduct()">
+          View
+        </button>
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('modal-back6')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-back7">
+      <div class="prod-view">
+        <h2>Enter Product ID to view product</h2>
+        <div id="input-group">
+          <label for="">Product ID</label>
+          <input type="text" id="prod_id1" placeholder="Product ID" />
+        </div>
+        <button class="addViewBtn" type="button" onclick="viewProduct()">
+          View
+        </button>
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('modal-back7')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-back8">
+      <div class="prod-view">
+        <h2>Enter Price Filter</h2>
+        <div id="input-group">
+          <label for="">Max Price</label>
+          <input type="text" id="price2" placeholder="Max Price" />
+        </div>
+        <button class="addViewBtn" type="button" onclick="viewProduct()">
+          View
+        </button>
+        <button
+          class="addSaveBtn"
+          type="button"
+          onclick="document.getElementsByClassName('modal-back8')[0].style.display = 'none'; cancel()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

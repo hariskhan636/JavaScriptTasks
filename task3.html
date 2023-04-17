@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="task3.css" />
+    <script type="text/javascript" src="task3.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="showPerson()">Show Person</button>
+    <button onclick="addPerson()">Add Person</button>
+    <button onclick="createObject()">Create Object</button>
+
+    <div id="person-show">
+        <h2 style="margin-top: 20px">People Data</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>City</th>
+            </tr>
+          </thead>
+          <tbody id="person-data">
+            <tr></tr>
+          </tbody>
+        </table>
+    </div>
+
+    <div class="modal-back">
+        <div class="person-add">
+            <h2>Add Person</h2>
+
+            <div id="input-group">
+            <label for="">Name</label>
+            <input type="text" id="name" placeholder="Enter Name" />
+            </div>
+
+            <div id="input-group">
+            <label for="">City</label>
+            <input type="text" id="city" placeholder="Enter City" />
+            </div>
+
+            <button class="addSaveBtn" type="button" onclick="savePerson()">
+                Save
+            </button>
+        </div>
+    </div>
+
+    <div class="table">
+      <h2 style="margin-top: 20px">Result</h2>
+      <table id="result"></table>
+    </div>
+    
+</body>
+</html>

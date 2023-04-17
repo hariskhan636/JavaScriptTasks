@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript</h1>
+    <button class="btn" id="myBtn" onclick="buttonClicked()">Click Me</button>
+    <button class="btn" id="btn2">Click Me 2</button>
+
+    <button onclick="showProducts()">Show Products</button>
+    <button onclick="addProducts()">Add Products</button>
+    <button onclick="editProducts()">Edit Products</button>
+    <button onclick="deleteProducts()">Delete Products</button>
+
+    <div id="dynamic">
+
+    </div>
+
+    <div class="modal-back">
+
+        <div id="product-show">
+            <h2 style="margin-top: 20px;">Products</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="product-data">
+                    <tr>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="product-edit">
+
+            <h2>Edit Product</h2>
+            <input type="hidden" id="prodIndex">
+            <div id="input-group">
+                <label for="">SKU</label>
+                <input type="text" id="sku" placeholder="SKU">
+            </div>
+    
+            <div id="input-group">
+                <label for="">Name</label>
+                <input type="text" id="name" placeholder="Product Name">
+            </div>
+    
+            <div id="input-group">
+                <label for="">Price</label>
+                <input type="text" id="price" placeholder="Price">
+            </div>
+            
+             <button class="btn" type="button" onclick="saveProduct()">Save</button>
+    
+        </div>
+    </div>
+    
+
+</body>
+</html>
