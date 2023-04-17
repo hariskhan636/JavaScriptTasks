@@ -1,39 +1,39 @@
 products = [
-  // {
-  //   id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
-  //   name: "Chocolate",
-  //   price: "50",
-  //   vendorId: "10000",
-  //   categoryId: "12345",
-  // },
-  // {
-  //   id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
-  //   name: "Bat",
-  //   price: "5000",
-  //   vendorId: "20000",
-  //   categoryId: "23456",
-  // },
-  // {
-  //   id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
-  //   name: "Pencil",
-  //   price: "20",
-  //   vendorId: "30000",
-  //   categoryId: "34567",
-  // },
-  // {
-  //   id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
-  //   name: "Candy",
-  //   price: "30",
-  //   vendorId: "30000",
-  //   categoryId: "12345",
-  // },
-  // {
-  //   id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
-  //   name: "Ball",
-  //   price: "5000",
-  //   vendorId: "40000",
-  //   categoryId: "23456",
-  // },
+  {
+    id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
+    name: "Chocolate",
+    price: "50",
+    vendorId: "10000",
+    categoryId: "12345",
+  },
+  {
+    id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
+    name: "Bat",
+    price: "5000",
+    vendorId: "20000",
+    categoryId: "23456",
+  },
+  {
+    id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
+    name: "Pencil",
+    price: "20",
+    vendorId: "30000",
+    categoryId: "34567",
+  },
+  {
+    id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
+    name: "Candy",
+    price: "30",
+    vendorId: "30000",
+    categoryId: "12345",
+  },
+  {
+    id: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
+    name: "Ball",
+    price: "5000",
+    vendorId: "40000",
+    categoryId: "23456",
+  },
 ];
 
 category = [
@@ -85,17 +85,17 @@ vendor = [
   },
 ];
 
-addFlag = false;
-editFlag = false;
-addToVenFlag = false;
-addToCatFlag = false;
-delById = false;
-delByName = false;
-getCat = false;
-getVen = false;
-getProd = false;
-getCheap = false;
-venIndex = 0;
+var addFlag = false;
+var editFlag = false;
+var addToVenFlag = false;
+var addToCatFlag = false;
+var delById = false;
+var delByName = false;
+var getCat = false;
+var getVen = false;
+var getProd = false;
+var getCheap = false;
+var venIndex = 0;
 
 function showProducts() {
   document.getElementById("product-show").style.display = 'block'
@@ -131,6 +131,9 @@ function showProducts() {
 
 function addProduct() {
   document.getElementsByClassName("modal-back")[0].style.display = "block";
+
+  document.getElementById("name").value = ""
+  document.getElementById("price").value = ""
   
   const vendorDropdown = document.getElementById("vendorId");
   const categoryDropdown = document.getElementById("categoryId")
@@ -172,7 +175,7 @@ function editProduct(index) {
       if(ven.status=='active'){
         const option = document.createElement("option");
         option.value = ven.id;
-        option.text = ven.id;
+        option.text = ven.first_name + " " + ven.last_name;
         vendorDropdown.add(option);
       }
     });
@@ -181,7 +184,7 @@ function editProduct(index) {
       if(cat.status=='active'){
         const option = document.createElement("option");
         option.value = cat.id;
-        option.text = cat.id;
+        option.text = cat.name;
         categoryDropdown.add(option);
       }
     });
@@ -196,6 +199,7 @@ function editProduct(index) {
 
   editFlag = true;
 }
+
 function saveProduct(index) {
   if (addFlag) {
     document.getElementsByClassName("modal-back")[0].style.display = "none";
@@ -326,34 +330,35 @@ function getCheapProducts() {
 }
 
 function viewProduct() {
+  
   if (getCat) {
-    cat = document.getElementById("cat_id").value;
+    
+    catName = document.getElementById("cat_name").value;
+    
     var found = false;
     var arr = [];
 
     for (let i = 0; i < category.length; i++) {
-      if (category[i].name == cat) {
-        found = true;
-        for (let j = 0; j < products.length; j++) {
-          if (category[i].id == products[j].categoryId) {
-            arr.push(products[j]);
-          }
+      for(let j=0; j<products.length; j++){
+        if (category[i].id == products[j].categoryId && category[i].name == catName) {
+          arr.push(products[j]);
+          found = true;
+        }else if (found == false && i == category.length - 1) {
+            console.log(catName)
+            alert("Category/Products not found");
+            showProducts();
         }
-      } else if (found == false && i == category.length - 1) {
-        alert("Category not found");
-        showProducts();
       }
     }
 
     if (found == true) {
       document.getElementsByClassName("modal-back5")[0].style.display = "none";
-      getCat = false;
       //console.log(arr)
       var table = document.getElementById("product-data");
       var head = document.getElementById("head");
       var heading = document.getElementById("heading");
 
-      heading.innerHTML = "Products by Category: " + cat;
+      heading.innerHTML = "Products by Category: " + catName;
       cols = `<th>ID</th>
             <th>Name</th>
             <th>Price</th>
@@ -375,10 +380,12 @@ function viewProduct() {
             `;
       });
       table.innerHTML = rows;
+      
     }
   }
 
-  if (getVen) {
+  else if (getVen) {
+    
     firstName = document.getElementById("ven_fn").value;
     lastName = document.getElementById("ven_ln").value;
     var found = false;
@@ -394,8 +401,8 @@ function viewProduct() {
             arr.push(products[j]);
           }
         }
-      } else if (found == false && i == category.length - 1) {
-        alert("Vendor not found");
+      } else if (found == false && i == vendor.length-1) {
+        alert("Vendor/Products not found");
         showProducts();
       }
     }
@@ -430,10 +437,11 @@ function viewProduct() {
             `;
       });
       table.innerHTML = rows;
+      
     }
   }
 
-  if (getProd) {
+  else if (getProd) {
     id = parseInt(document.getElementById("prod_id1").value);
     var found = false;
     var arr = [];
@@ -477,10 +485,11 @@ function viewProduct() {
             `;
       });
       table.innerHTML = rows;
+   
     }
   }
 
-  if (getCheap) {
+  else if (getCheap) {
     maxPrice = parseInt(document.getElementById("price2").value);
     var arr = [];
 
